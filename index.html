@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEG Global GmbH - Exhibition Booth Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --light: #f5f5f5;
+            --text: #333333;
+            --text-light: #666666;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--light);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--light);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: var(--accent);
+            color: var(--light);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            color: var(--light);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            color: var(--light);
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .cta-btn {
+            background: var(--accent);
+            color: var(--light);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.4);
+        }
+
+        /* Services Section */
+        .section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+        }
+
+        /* Image Carousel */
+        .carousel-section {
+            background: var(--secondary);
+            padding: 6rem 5%;
+        }
+
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .carousel {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 3rem 2rem 2rem;
+            color: var(--light);
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--light);
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 50%;
+        }
+
+        .carousel-arrow:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .carousel-arrow.prev {
+            left: 1rem;
+        }
+
+        .carousel-arrow.next {
+            right: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        .contact .section-title h2 {
+            color: var(--light);
+        }
+
+        .contact .section-title p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: var(--light);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">WEG <span>Global</span> GmbH</a>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLanguage('de')">DE</button>
+            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 data-de="Innovative Messestände & Ausstellungen" data-en="Innovative Exhibition Booths & Displays">Innovative Messestände & Ausstellungen</h1>
+            <p data-de="Wir verwandeln Ihre Vision in beeindruckende reale Erlebnisse. Spezialisiert auf maßgeschneiderte Ausstellungslösungen weltweit." data-en="We transform your vision into impressive real experiences. Specializing in customized exhibition solutions worldwide.">Wir verwandeln Ihre Vision in beeindruckende reale Erlebnisse. Spezialisiert auf maßgeschneiderte Ausstellungslösungen weltweit.</p>
+            <a href="#contact" class="cta-btn" data-de="Kostenlose Beratung" data-en="Free Consultation">Kostenlose Beratung</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="section-title">
+            <h2 data-de="Unsere Dienstleistungen" data-en="Our Services">Unsere Dienstleistungen</h2>
+            <p data-de="End-zu-End-Lösungen für alle Ihre Ausstellungsbedarfe" data-en="End-to-end solutions for all your exhibition needs">End-zu-End-Lösungen für alle Ihre Ausstellungsbedarfe</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-palette"></i></div>
+                <h3 data-de="Konzept & Design" data-en="Concept & Design">Konzept & Design</h3>
+                <p data-de="Kreative Planung und 3D-Visualisierung Ihres idealen Messestands" data-en="Creative planning and 3D visualization of your ideal booth">Kreative Planung und 3D-Visualisierung Ihres idealen Messestands</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
+                <h3 data-de="Aufbau & Installation" data-en="Construction & Installation">Aufbau & Installation</h3>
+                <p data-de="Professionelle Montage durch unser erfahrenes Team vor Ort" data-en="Professional assembly by our experienced on-site team">Professionelle Montage durch unser erfahrenes Team vor Ort</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tv"></i></div>
+                <h3 data-de="Multimedia-Integration" data-en="Multimedia Integration">Multimedia-Integration</h3>
+                <p data-de="Moderne Technologie und interaktive Präsentationselemente" data-en="Modern technology and interactive presentation elements">Moderne Technologie und interaktive Präsentationselemente</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-shipping-fast"></i></div>
+                <h3 data-de="Logistik & Versand" data-en="Logistics & Shipping">Logistik & Versand</h3>
+                <p data-de="Globale Lieferkette mit zuverlässiger Anlieferung zum Veranstaltungsort" data-en="Global supply chain with reliable venue delivery">Globale Lieferkette mit zuverlässiger Anlieferung zum Veranstaltungsort</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tools"></i></div>
+                <h3 data-de="Wartung & Support" data-en="Maintenance & Support">Wartung & Support</h3>
+                <p data-de="24/7 Unterstützung während Ihrer gesamten Messezeit" data-en="24/7 support throughout your entire event">24/7 Unterstützung während Ihrer gesamten Messezeit</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-leaf"></i></div>
+                <h3 data-de="Nachhaltige Lösungen" data-en="Sustainable Solutions">Nachhaltige Lösungen</h3>
+                <p data-de="Umweltfreundliche Materialien und wiederverwendbare Systeme" data-en="Eco-friendly materials and reusable systems">Umweltfreundliche Materialien und wiederverwendbare Systeme</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Carousel -->
+    <section id="portfolio" class="carousel-section">
+        <div class="carousel-container">
+            <div class="section-title">
+                <h2 style="color: white;" data-de="Unsere Projekte" data-en="Our Projects">Unsere Projekte</h2>
+                <p style="color: rgba(255,255,255,0.7);" data-de="Einblick in unsere neuesten Ausstellungslösungen" data-en="Insight into our latest exhibition solutions">Einblick in unsere neuesten Ausstellungslösungen</p>
+            </div>
+            <div class="carousel">
+
+
+    <div class="carousel-slide active">
+        <img src="img/微信图片_20260427140201_484_5(1).jpg" alt="Trade Show Booth">
+        <div class="carousel-caption">
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <img src="img/微信图片_20260427140215_485_5(1).jpg" alt="Exhibition Display">
+        <div class="carousel-caption">
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <img src="img/微信图片_20260427140151_483_5(1).jpg" alt="Booth Setup">
+        <div class="carousel-caption">
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <img src="img/微信图片_20260518235011_112_77(1).jpg" alt="Custom Display">
+        <div class="carousel-caption">
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <img src="img/微信图片_20260518235017_116_77(1).jpg" alt="Custom Display">
+        <div class="carousel-caption">
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <img src="img/微信图片_20260518235020_117_77(1).jpg" alt="Custom Display">
+        <div class="carousel-caption">
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <img src="img/微信图片_20260518235212_118_77(1).jpg" alt="Custom Display">
+        <div class="carousel-caption">
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <img src="img/微信图片_20260518235007_111_77(1).jpg" alt="Custom Display">
+        <div class="carousel-caption">
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <img src="img/0f1896667b73fac7605837f71d472780(1).jpg" alt="Custom Display">
+        <div class="carousel-caption">
+        </div>
+    </div>
+</div>
+            <div class="carousel-nav">
+                <span class="carousel-dot active" onclick="currentSlide(0)"></span>
+                <span class="carousel-dot" onclick="currentSlide(1)"></span>
+                <span class="carousel-dot" onclick="currentSlide(2)"></span>
+                <span class="carousel-dot" onclick="currentSlide(3)"></span>
+                <span class="carousel-dot" onclick="currentSlide(4)"></span>
+                <span class="carousel-dot" onclick="currentSlide(5)"></span>
+                <span class="carousel-dot" onclick="currentSlide(6)"></span>
+                <span class="carousel-dot" onclick="currentSlide(7)"></span>
+                <span class="carousel-dot" onclick="currentSlide(8)"></span>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="about">
+            <div class="about-image">
+                <img src="img/微信图片_20260518235007_111_77(1).jpg" alt="WEG Global Team">
+            </div>
+            <div class="about-content">
+                <h3 data-de="Über WEG Global GmbH" data-en="About WEG Global GmbH">Über WEG Global GmbH</h3>
+                <p data-de="Seit über 15 Jahren sind wir führend in der Entwicklung und Umsetzung innovativer Messelösungen. Unser engagiertes Team aus Designer, Ingenieure und Projektmanager arbeiten zusammen, um außergewöhnliche Ausstellungserlebnisse zu schaffen." data-en="For over 15 years we have been leading the development and implementation of innovative trade show solutions. Our dedicated team of designers, engineers and project managers work together to create extraordinary exhibition experiences.">Seit über 15 Jahren sind wir führend in der Entwicklung und Umsetzung innovativer Messelösungen. Unser engagiertes Team aus Designer, Ingenieure und Projektmanager arbeiten zusammen, um außergewöhnliche Ausstellungserlebnisse zu schaffen.</p>
+                <p data-de="Mit Büros in Deutschland und internationalen Partnerschaften bedienen wir Kunden auf der ganzen Welt. Unsere Mission ist es, Marken dabei zu helfen, sich auf messen hervorzuheben." data-en="With offices in Germany and international partnerships, we serve customers around the world. Our mission is to help brands stand out at trade shows.">Mit Büros in Deutschland und internationalen Partnerschaften bedienen wir Kunden auf der ganzen Welt. Unsere Mission ist es, Marken dabei zu helfen, sich auf Messen hervorzuheben.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label" data-de="Projekte" data-en="Projects">Projekte</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label" data-de="Länder" data-en="Countries">Länder</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label" data-de="Jahre Erfahrung" data-en="Years Experience">Jahre Erfahrung</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="section-title">
+            <h2 data-de="Kontaktieren Sie Uns" data-en="Contact Us">Kontaktieren Sie Uns</h2>
+            <p data-de="Bereit, Ihren nächsten Messestand zu planen?" data-en="Ready to plan your next exhibition booth?">Bereit, Ihren nächsten Messestand zu planen?</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 data-de="Kontaktinformationen" data-en="Contact Information">Kontaktinformationen</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span data-de="Müllerstraße 123, 10553 Berlin, Deutschland" data-en="Müllerstraße 123, 10553 Berlin, Germany">Müllerstraße 123, 10553 Berlin, Deutschland</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@wegglobal.de</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+49 30 1234 5678</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span data-de="Mo-Fr: 9:00 - 18:00 Uhr" data-en="Mon-Fri: 9:00 AM - 6:00 PM">Mo-Fr: 9:00 - 18:00 Uhr</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 WEG Global GmbH. Alle Rechte vorbehalten. / All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Language management
+        let currentLang = 'de';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+        }
+
+        // Initialize with German
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-de]').forEach(el => {
+                el.textContent = el.getAttribute('data-de');
+            });
+        });
+
+        // Carousel functionality
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlideIndex = index;
+        }
+
+        function nextSlide() {
+            let newIndex = (currentSlideIndex + 1) % slides.length;
+            showSlide(newIndex);
+        }
+
+        function prevSlide() {
+            let newIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            showSlide(newIndex);
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
